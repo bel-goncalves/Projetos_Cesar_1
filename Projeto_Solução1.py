@@ -15,8 +15,13 @@ def carregar_cadastros():
 
 # Função que salva o cadastro passado como parâmetro.
 def salvar_cadastros(cadastros):
-    with open('cadastros.json', 'w') as arquivo:
-        json.dump(cadastros, arquivo, indent=2)
+
+    try:
+        with open('cadastros.json', 'r+') as arquivo:
+            json.dump(cadastros, arquivo, indent=2)
+    except FileNotFoundError:
+        with open('cadastros.json', 'w') as arquivo:
+            json.dump(cadastros, arquivo, indent=2)
 
 
 # Função que vai consultar os usuários cadastrados e mostrar.
@@ -103,6 +108,7 @@ def editar_usuario():
         print(f"{cadastro['id']} - {cadastro['nome']}")
 
     id_usuario = input('Digite o ID do usuário que deseja editar: ')
+    print(30 * '=')
 
     for cadastro in cadastros:
         if str(cadastro['id']) == id_usuario:
