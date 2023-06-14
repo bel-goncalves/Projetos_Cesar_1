@@ -16,10 +16,6 @@ def carregar_cadastros():
 # Função que salva o cadastro passado como parâmetro.
 def salvar_cadastros(cadastros):
 
-    try:
-        with open('cadastros.json', 'r+') as arquivo:
-            json.dump(cadastros, arquivo, indent=2)
-    except FileNotFoundError:
         with open('cadastros.json', 'w') as arquivo:
             json.dump(cadastros, arquivo, indent=2)
 
@@ -52,7 +48,17 @@ def cadastrar_usuario():
     for c in range(r):
         conhecimento = input('Conhecimento: ').upper()
 
-        print('\033[33mNíveis: 1 - Aprendiz; 2 - Ciente; 3 - Generalista; 4 - Especialista\033[0;0m')
+        print(f"""\033[33m        
+    Níveis: 
+    1 - Aprendiz 
+     Não Possui conhecimento algum sobre o assunto.
+    2 - Ciente 
+     Possui conhecimento básico sobre o assunto.
+    3 - Generalista 
+     Possui domínio parcial sobre o assunto.
+    4 - Especialista
+     Possui total domínio sobre o assunto.     
+         \033[0;0m""")
 
         while True:
             nivel = input('Nível do conhecimento: ')
@@ -151,8 +157,18 @@ def editar_usuario():
                         novo_conhecimento = input('Digite o novo conhecimento: ').upper()
 
                         while True:
-                            print(f'\033[33mNíveis: 1 - Aprendiz; 2 - Ciente; 3 - Generalista; 4 - '
-                                  f'Especialista\033[0;0m')
+                            print(f"""\033[33m
+    Níveis: 
+    1 - Aprendiz 
+     Não Possui conhecimento algum sobre o assunto.
+    2 - Ciente 
+     Possui conhecimento básico sobre o assunto.
+    3 - Generalista 
+     Possui domínio parcial sobre o assunto.
+    4 - Especialista
+     Possui total domínio sobre o assunto.
+                             \033[0;0m""")
+
                             novo_nivel = input('Digite o nível desse conhecimento: ')
 
                             if novo_nivel == '1':
